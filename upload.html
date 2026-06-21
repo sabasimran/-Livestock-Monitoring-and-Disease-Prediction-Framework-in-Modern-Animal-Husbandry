@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Upload Animal Image</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+
+    body {
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at top left, rgba(34,197,94,0.18), transparent 28%),
+        radial-gradient(circle at bottom right, rgba(56,189,248,0.22), transparent 30%),
+        linear-gradient(135deg, #f8fffd, #eefbfd, #f6fffb);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 30px 20px;
+      color: #143731;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 760px;
+      background: rgba(255,255,255,0.62);
+      border: 1px solid rgba(255,255,255,0.5);
+      backdrop-filter: blur(20px);
+      border-radius: 30px;
+      box-shadow: 0 25px 60px rgba(15, 118, 110, 0.10);
+      padding: 40px;
+      animation: fadeUp 0.8s ease;
+    }
+
+    .top {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .top h1 {
+      font-size: 2.2rem;
+      color: #103c36;
+      margin-bottom: 12px;
+    }
+
+    .top p {
+      color: #5c7873;
+      line-height: 1.7;
+      max-width: 580px;
+      margin: auto;
+    }
+
+    .upload-box {
+      position: relative;
+      border: 2px dashed rgba(22, 163, 74, 0.28);
+      background: linear-gradient(135deg, rgba(255,255,255,0.75), rgba(236,253,245,0.75));
+      border-radius: 28px;
+      padding: 40px 25px;
+      text-align: center;
+      transition: 0.35s ease;
+      overflow: hidden;
+    }
+
+    .upload-box:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(56, 189, 248, 0.10);
+    }
+
+    .upload-box::before {
+      content: "";
+      position: absolute;
+      width: 220px;
+      height: 220px;
+      background: radial-gradient(circle, rgba(56,189,248,0.20), transparent 70%);
+      top: -80px;
+      right: -50px;
+    }
+
+    .upload-icon {
+      font-size: 3rem;
+      margin-bottom: 14px;
+    }
+
+    .upload-box h2 {
+      color: #11433d;
+      margin-bottom: 10px;
+    }
+
+    .upload-box p {
+      color: #61817b;
+      margin-bottom: 22px;
+    }
+
+    input[type="file"] {
+      width: 100%;
+      padding: 14px;
+      border-radius: 16px;
+      border: 1px solid rgba(15, 118, 110, 0.15);
+      background: rgba(255,255,255,0.86);
+      margin-bottom: 22px;
+      cursor: pointer;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 28px;
+      border: none;
+      border-radius: 16px;
+      background: linear-gradient(135deg, #16a34a, #38bdf8);
+      color: white;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.35s ease;
+      box-shadow: 0 16px 35px rgba(56, 189, 248, 0.18);
+    }
+
+    .btn:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 22px 42px rgba(56, 189, 248, 0.26);
+    }
+
+    .bottom-link {
+      text-align: center;
+      margin-top: 24px;
+    }
+
+    .bottom-link a {
+      text-decoration: none;
+      color: #0284c7;
+      font-weight: 600;
+    }
+
+    .error {
+      margin-top: 18px;
+      background: rgba(239, 68, 68, 0.10);
+      color: #b91c1c;
+      border: 1px solid rgba(239, 68, 68, 0.18);
+      padding: 14px 16px;
+      border-radius: 14px;
+      text-align: center;
+      font-weight: 600;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(35px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 768px) {
+      .container { padding: 28px 20px; }
+      .top h1 { font-size: 1.8rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="top">
+      <h1>Upload Livestock Image</h1>
+      <p>
+        Upload a cattle image to detect whether the animal is healthy or affected by lumpy skin disease using the trained AI model.
+      </p>
+    </div>
+
+    <form method="POST" enctype="multipart/form-data">
+      <div class="upload-box">
+        <div class="upload-icon">☁️</div>
+        <h2>Select Image for Detection</h2>
+        <p>Supported formats: PNG, JPG, JPEG, WEBP</p>
+        <input type="file" name="file" required>
+        <button type="submit" class="btn">Analyze Image</button>
+      </div>
+
+      {% if error %}
+      <div class="error">{{ error }}</div>
+      {% endif %}
+    </form>
+
+    <div class="bottom-link">
+      <a href="/">← Back to Home</a>
+    </div>
+  </div>
+</body>
+</html>
