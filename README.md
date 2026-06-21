@@ -1,0 +1,1 @@
+# -Livestock-Monitoring-and-Disease-Prediction-Framework-in-Modern-Animal-Husbandry
